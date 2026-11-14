@@ -304,6 +304,15 @@ svg{flex:none}
 .toast.badge{background:var(--xp);color:var(--bg)}
 .xfer{width:100%;font-family:var(--f-mono);font-size:12px;padding:10px 12px;border-radius:12px;border:1.5px solid var(--line);background:var(--surface-2);color:var(--ink);resize:vertical;word-break:break-all}
 .steps{margin:0;padding-left:1.3em;display:flex;flex-direction:column;gap:4px;font-size:15px}
+.steps{margin:0;padding-left:1.3em;display:flex;flex-direction:column;gap:6px;font-size:15px}
+.guide summary{cursor:pointer;font-weight:700}
+.guide .steps{margin-top:12px}
+#simTimer.late{color:var(--bad)}
+.sc-miss{flex-direction:column;gap:2px;font-family:var(--f-mono);font-weight:700;font-size:13px}
+.mx{color:var(--bad);animation:mxa 3.6s infinite}
+.mo{color:var(--good);animation:moa 3.6s infinite}
+@keyframes mxa{0%,22%{opacity:1;text-decoration:none}34%,100%{opacity:.55;text-decoration:line-through}}
+@keyframes moa{0%,34%{opacity:0;transform:translateY(8px)}48%,90%{opacity:1;transform:none}100%{opacity:0}}
 .toast.on{animation:pop .4s cubic-bezier(.3,1.5,.5,1)}
 @media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
 </style>
@@ -418,7 +427,30 @@ const RAW = [
 ["gen","in general","en general","Habla de lo que pasa casi siempre.","{In general}, students enjoy the course.","{In general}, I sleep eight hours.","{In general}, Grunts run away when their leader falls.","Halo"],
 ["gen","as a rule","por regla general","Una costumbre o regla personal.","{As a rule}, I study every day.","{As a rule}, we don't eat in the living room.","{As a rule}, a Grey Warden never refuses a fight against the Blight.","Dragon Age"],
 ["gen","in order to","para / con el fin de","in order to + verbo base.","I practice {in order to} improve.","I wake up early {in order to} go to the gym.","Joker joined the group {in order to} change corrupt adults.","Persona 5"],
-["gen","for this purpose","con este propósito","Meta. + For this purpose, + plan.","{For this purpose}, we made a plan.","We want to save money. {For this purpose}, we cook at home.","Earth needed a solution. {For this purpose}, they built the Hail Mary.","Project Hail Mary"]
+["gen","for this purpose","con este propósito","Meta. + For this purpose, + plan.","{For this purpose}, we made a plan.","We want to save money. {For this purpose}, we cook at home.","Earth needed a solution. {For this purpose}, they built the Hail Mary.","Project Hail Mary"],
+["cnc","nonetheless","no obstante / aun así","Igual que nevertheless: ; nonetheless, …","The plan was risky; {nonetheless}, they approved it.","I was tired; {nonetheless}, I finished my homework.","The Normandy was damaged; {nonetheless}, the pilot kept flying.","Mass Effect","C1"],
+["cnc","albeit","aunque (+ adjetivo o adverbio)","albeit + adjetivo o adverbio. Nunca + oración completa.","It was a useful, {albeit} expensive, course.","We arrived, {albeit} a little late.","Rocky agreed to help, {albeit} nervously.","Project Hail Mary","C1"],
+["cnc","notwithstanding","a pesar de / no obstante","Notwithstanding + nombre. Muy formal.","{Notwithstanding} the delay, the project succeeded.","{Notwithstanding} the bad weather, the match continued.","{Notwithstanding} his doubts, the Arbiter joined the humans.","Halo","C1"],
+["cnc","regardless of","sin importar","regardless of + nombre, o + what / who / how…","We will go {regardless of} the weather.","She treats everyone the same, {regardless of} their age.","A Spartan completes the mission {regardless of} the danger.","Halo","C1"],
+["cnd","provided that","siempre y cuando","provided that + oración. Condición estricta.","You can leave early {provided that} you finish the report.","I will lend you the book {provided that} you return it.","The Thieves will succeed {provided that} nobody panics.","Persona 5","C1"],
+["cnd","in the event of","en caso de","in the event of + nombre.","{In the event of} fire, use the stairs.","{In the event of} rain, the party will be indoors.","{In the event of} a hull breach, close the airlock.","Mass Effect","C1"],
+["cau","owing to","debido a","owing to + nombre. Formal.","The match was cancelled {owing to} heavy rain.","I was late {owing to} a problem with the bus.","The station was abandoned {owing to} the radiation.","Metro","C1"],
+["cau","on account of","a causa de","on account of + nombre.","He retired {on account of} his health.","The road is closed {on account of} the parade.","Dom kept fighting {on account of} his family.","Gears of War","C1"],
+["cau","given that","dado que","given that + oración.","{Given that} prices are rising, we must save.","{Given that} it is late, let's take a taxi.","{Given that} the Blight was near, the king called his army.","Dragon Age","C1"],
+["res","thereby","de ese modo / con lo cual","thereby + verbo en -ing: el resultado de la acción.","He signed the contract, {thereby} accepting the terms.","She left early, {thereby} avoiding the traffic.","Ender destroyed the fleet, {thereby} ending the war.","Ender's Game","C1"],
+["res","as a consequence","como consecuencia","Al inicio + coma.","Sales fell. {As a consequence}, the shop closed.","I slept badly. {As a consequence}, I was tired all day.","The reactor failed. {As a consequence}, the ship lost power.","Mass Effect","C1"],
+["gen","so as to","para / a fin de","so as to + verbo base. Igual que in order to.","She spoke quietly {so as to} avoid waking the baby.","I left early {so as to} catch the first bus.","Artyom moved slowly {so as to} make no noise.","Metro","C1"],
+["gen","so that","para que","so that + oración (sujeto + verbo).","Speak slowly {so that} everyone understands.","I wrote it down {so that} I would not forget.","Cortana opened the door {so that} the Chief could escape.","Halo","C1"],
+["add","what is more","es más / además","Patrón: ; what is more, + argumento extra.","The flat is small; {what is more}, it is noisy.","The food was cold; {what is more}, it was expensive.","The enemy was faster; {what is more}, they knew the terrain.","Gears of War","C1"],
+["add","as well as","así como / además de","A as well as B: une dos nombres o dos -ing.","She speaks French {as well as} English.","We need eggs {as well as} milk.","The Warden recruited mages {as well as} dwarves.","Dragon Age","C1"],
+["con","by contrast","en cambio","Igual que in contrast: al inicio + coma.","{By contrast}, the second test was easy.","My sister loves sport. {By contrast}, I prefer reading.","The Citadel was peaceful. {By contrast}, Omega was chaos.","Mass Effect","C1"],
+["con","conversely","por el contrario / a la inversa","Presenta la situación opuesta.","Some prices rose; {conversely}, others fell.","Some people gain weight on holiday; {conversely}, others lose it.","Some replicants obeyed; {conversely}, others rebelled.","Blade Runner","C1"],
+["con","instead of","en lugar de","instead of + nombre o -ing.","We walked {instead of} taking the bus.","I had tea {instead of} coffee.","Joker went to Mementos {instead of} going home.","Persona 5","C1"],
+["con","rather than","en vez de / más que","rather than + verbo, nombre o -ing.","{Rather than} complain, she solved the problem.","I prefer to cook {rather than} eat out.","Grace decided to experiment {rather than} wait.","Project Hail Mary","C1"],
+["tim","in the meantime","mientras tanto","Igual que meanwhile.","The bus leaves at six. {In the meantime}, let's have a coffee.","Dinner will be ready soon. {In the meantime}, set the table.","Help was coming. {In the meantime}, Marcus defended the gate.","Gears of War","C1"],
+["tim","prior to","antes de","prior to + nombre o -ing. Formal.","Check your answers {prior to} submitting the test.","Please arrive ten minutes {prior to} the interview.","{Prior to} the war, Ender had never left Earth.","Ender's Game","C1"],
+["ccl","on the whole","en general / en conjunto","Balance general, igual que overall.","{On the whole}, the results were good.","{On the whole}, I enjoyed the trip.","{On the whole}, the Inquisition was a success.","Dragon Age","C1"],
+["con","yet","pero / sin embargo","…, yet + idea opuesta. Como but, más formal.","It was a simple plan, {yet} it worked.","He is rich, {yet} he is not happy.","Deckard was tired, {yet} he kept searching.","Blade Runner","C1"]
 ];
 
 /* Trampas: [título, regla simple, [[frase, opciones, por qué]]] */
@@ -483,7 +515,32 @@ const TRAPS = [
  ["My phone is {similar to} yours.",["similar to","as ... as"],"Sin adjetivo en medio → similar to."],
  ["My phone is {as} fast {as} yours.",["similar to","as ... as"],"Adjetivo «fast» en medio → as … as."],
  ["Her plan is {similar to} Shepard's plan.",["similar to","as ... as"],"Parecido a + nombre → similar to."],
- ["This level is {as} hard {as} the last one.",["similar to","as ... as"],"Adjetivo «hard» en medio → as … as."]]]
+ ["This level is {as} hard {as} the last one.",["similar to","as ... as"],"Adjetivo «hard» en medio → as … as."]]],
+["although vs however","Los dos expresan contraste, pero <b>although</b> une dos ideas en UNA oración (Although A, B). <b>However</b> empieza una oración NUEVA después de punto o punto y coma, y lleva coma. Truco: si después del hueco hay una coma pegada, es however.",[
+ ["{Although} he was tired, he continued.",["although","however"],"Une dos ideas en una sola oración, sin coma pegada → although."],
+ ["He was tired. {However}, he continued.",["although","however"],"Oración nueva + coma pegada → however."],
+ ["The test was long; {however}, most students finished.",["although","however"],"Patrón ; ___, → however."],
+ ["{Although} the Covenant had more ships, the humans won.",["although","however"],"Une dos ideas en una sola oración → although."]]],
+["so that vs so as to","<b>So that</b> + oración completa (alguien + verbo). <b>So as to / in order to</b> + verbo base, sin sujeto. Mira qué viene después: ¿una persona o directamente un verbo?",[
+ ["I saved money {so that} I could travel.",["so that","so as to"],"Después viene «I could»: sujeto + verbo → so that."],
+ ["I saved money {so as to} travel.",["so that","so as to"],"Después viene el verbo «travel» → so as to."],
+ ["He whispered {so as to} avoid attention.",["so that","so as to"],"Verbo base «avoid» → so as to."],
+ ["Cortana opened the door {so that} the Chief could escape.",["so that","so as to"],"«the Chief could escape» tiene sujeto → so that."]]],
+["therefore vs thereby","<b>Therefore</b> abre una oración con resultado ( ; therefore, ). <b>Thereby</b> va después de una coma y lo sigue un verbo en -ing: dice el resultado de la acción anterior.",[
+ ["He missed the train; {therefore}, he was late.",["therefore","thereby"],"Patrón ; ___, + oración → therefore."],
+ ["He missed the train, {thereby} arriving late.",["therefore","thereby"],"Coma + verbo en -ing → thereby."],
+ ["She trained daily, {thereby} improving her time.",["therefore","thereby"],"Seguido de «improving» (-ing) → thereby."],
+ ["The data was wrong; {therefore}, the study was repeated.",["therefore","thereby"],"Patrón ; ___, + oración → therefore."]]],
+["provided that vs unless","<b>Provided that</b> = solo si (condición que SÍ debe cumplirse). <b>Unless</b> = a menos que (si NO). Cambia unless por «if not» para comprobar.",[
+ ["You can come {provided that} you are quiet.",["provided that","unless"],"Puedes venir solo si estás callado → provided that."],
+ ["You can't come {unless} you are quiet.",["provided that","unless"],"= if you are not quiet → unless."],
+ ["We will win {provided that} everyone helps.",["provided that","unless"],"Ganamos solo si todos ayudan → provided that."],
+ ["We will lose {unless} everyone helps.",["provided that","unless"],"= if everyone doesn't help → unless."]]],
+["regardless of vs although","<b>Regardless of / notwithstanding</b> + nombre. <b>Although / even though</b> + oración con verbo. Es la misma trampa que despite, pero con palabras de nivel C1.",[
+ ["{Regardless of} the cost, we will buy it.",["regardless of","although"],"«the cost» es un nombre → regardless of."],
+ ["{Although} it is expensive, we will buy it.",["regardless of","although"],"«it is expensive» tiene verbo → although."],
+ ["{Notwithstanding} the rain, the game continued.",["notwithstanding","even though"],"«the rain» es un nombre → notwithstanding."],
+ ["{Even though} it rained, the game continued.",["notwithstanding","even though"],"«it rained» tiene verbo → even though."]]]
 ];
 
 /* Textos estilo examen: [título, fuente, texto con {conectores}] */
@@ -500,7 +557,39 @@ const PASSAGES = [
 ["Contra la Ruina","Dragon Age","The Warden travels across Ferelden {in order to} stop the Blight. {Besides} swords, the party uses magic. The companions are very different; {for instance}, Morrigan is cold, {whereas} Leliana is kind. {At last}, the army is ready for the final battle."],
 ["La Escuela de Batalla","Ender's Game","Ender went to Battle School {because} the teachers saw his talent. {Unlike} the other students, he tried to understand his enemies. He trained every day; {consequently}, he became the best commander. {Furthermore}, his army never lost. {In conclusion}, Ender was a very special kid."],
 ["Fin de semana en Puebla","Vida diaria","We wanted to go to the beach; {however}, it was too expensive. {For this reason}, we went to Puebla. We visited many places, {including} the cathedral. The food was {especially} good. {In summary}, it was a great weekend."],
-["Más allá del agujero negro","Interstellar","Earth was dying, {so} Cooper left his family. He promised to return {as soon as} the mission ended. Time moves slowly near the black hole; {hence} the big problem: one hour there is seven years on Earth. {Even so}, Cooper kept going. {Finally}, he made a difficult choice."]
+["Más allá del agujero negro","Interstellar","Earth was dying, {so} Cooper left his family. He promised to return {as soon as} the mission ended. Time moves slowly near the black hole; {hence} the big problem: one hour there is seven years on Earth. {Even so}, Cooper kept going. {Finally}, he made a difficult choice."],
+["El trabajo desde casa","Estilo examen","Remote work has become common in many companies. {Although} it offers flexibility, it also creates new problems. Many employees feel isolated; {moreover}, they find it hard to separate work from home life. {As a result}, some firms now ask staff to come in twice a week. {Unless} managers communicate clearly, teams can lose direction. {Nevertheless}, most workers say they would not return to the office full time. {On the whole}, the change seems permanent.",
+ [["Despite","However","Because"],["however","otherwise","in short"],["Likewise","In contrast","Because of"],["If","Despite","Otherwise"],["Therefore","Although","Because of this"],["For instance","Unless","Despite"]]],
+["Dormir para recordar","Estilo examen","Scientists agree that sleep is essential for memory. {During} the night, the brain organises what we learned in the day. People who sleep badly forget more; {in other words}, studying all night before an exam is a mistake. {Despite} this evidence, many students still do it. They drink coffee {in order to} stay awake, {whereas} a short nap would help them far more. {For this reason}, experts recommend at least seven hours of rest.",
+ [["While","Until","Meanwhile"],["on the other hand","nevertheless","otherwise"],["Although","However","Because of"],["so that","due to","as long as"],["unlike","because","therefore"],["Otherwise","Although","Similarly"]]],
+["Bicicletas en la ciudad","Estilo examen","Many cities are building bicycle lanes {so as to} reduce traffic. {Unlike} cars, bicycles produce no pollution and take up little space. Cycling is cheap; {what is more}, it keeps people fit. {However}, not everyone is convinced. Some drivers complain {because} the new lanes make roads narrower. {Even so}, studies show that streets with more cyclists are safer for everybody. {Provided that} cities plan carefully, bicycles and cars can share the road.",
+ [["so that","because of","in case"],["Whereas","In contrast","Although"],["in contrast","otherwise","as a result"],["Therefore","Moreover","Although"],["because of","despite","so"],["As a result","Even though","Because of this"],["Unless","Despite","Whereas"]]],
+["Vivir conectados","Estilo examen","Social media has changed the way we communicate. {Owing to} these platforms, people can stay in touch across continents. {On the other hand}, they spend less time talking face to face. Some experts blame the apps, {while} others point to parents. {Regardless of} who is responsible, the problem is growing. {Hence} the recent calls for stricter rules.",
+ [["Because","Since","Although"],["Similarly","For instance","In short"],["unlike","despite","however"],["Although","Even though","Because of"],["Because","Despite","Whereas"]]],
+["Un planeta más caliente","Estilo examen","The planet is getting warmer {due to} human activity. {Given that} carbon emissions keep rising, scientists expect more extreme weather. Some countries have reduced their emissions; {by contrast}, others have increased them. Governments promise action, {yet} progress is slow. {If} nothing changes, sea levels will rise. {Consequently}, millions of people may have to move. {In short}, the next ten years are critical.",
+ [["because","so","although"],["Owing to","Despite","Unless"],["likewise","as a result","for example"],["so","because","unless"],["Unless","Although","Until"],["Nevertheless","In contrast","Likewise"],["For instance","Otherwise","Whereas"]]],
+["La decisión de la comandante","Mass Effect","The Council refused to believe Shepard's warning {despite} the evidence. {Given that} no one else would act, the commander gathered a crew of her own. Garrus joined at once, {whereas} Wrex needed some convincing. The team was small; {nonetheless}, it was the best in the galaxy. They trained for weeks {so that} everyone knew their role. {Once} the Normandy was ready, they set course for the relay. {Above all}, Shepard wanted to bring everyone home.",
+ [["although","however","because of"],["Owing to","Despite","Unless"],["unlike","therefore","because"],["therefore","moreover","otherwise"],["so as to","in order to","because of"],["During","Until","Unless"],["For instance","In contrast","Otherwise"]]],
+["El secreto del anillo","Halo","The ring looked beautiful from space; {however}, it was a weapon. Cortana analysed its systems {as soon as} they landed. {Owing to} her warnings, the Master Chief avoided several traps. The Covenant wanted to activate the ring, {thereby} destroying all life nearby. {Unless} someone stopped them, the galaxy was lost. The Chief had little ammunition; {even so}, he pushed forward. {Eventually}, he reached the control room.",
+ [["therefore","although","moreover"],["during","unless","despite"],["Because","Although","In spite of"],["in order to","so that","because"],["If","Provided that","Although"],["as a result","even though","because of this"],["Otherwise","For instance","Whereas"]]],
+["Dos ingenieros","Project Hail Mary","Grace and Rocky came from different worlds, {yet} they understood each other. Rocky breathed ammonia, {so} he needed his own room. {Instead of} speaking, he sang in musical notes. Grace built a computer program {in order to} translate them. The work was slow {because of} the differences in their bodies. {Nevertheless}, they solved one problem after another. {In the meantime}, Earth was waiting for an answer.",
+ [["so","because","unless"],["because","although","however"],["Despite","Although","Because of"],["so that","due to","as a result"],["because","although","so"],["Therefore","Likewise","Because of this"],["Otherwise","For instance","As a result"]]],
+["El plan perfecto","Persona 5","The Phantom Thieves never act {unless} everyone agrees. {First}, they investigate the target in the real world. {Then}, they enter the Palace and look for the treasure. Ryuji likes to attack at once, {whereas} Makoto prefers a careful plan. {Given that} they are still students, they must finish before exams begin. {Otherwise}, they will fail their classes. {All in all}, being a hero requires good time management.",
+ [["if","as long as","although"],["Finally","Otherwise","However"],["Despite","Whereas","Unless"],["unlike","because","so"],["Despite","Owing to","Unless"],["Therefore","Moreover","Likewise"],["For instance","In contrast","Unless"]]],
+["El día de la emergencia","Gears of War","Nobody expected the attack. {Prior to} the invasion, humans had been fighting each other. The Locust came from below, {thereby} avoiding the army's defences. Whole cities fell {in spite of} their thick walls. The government made a terrible decision {in order to} save what was left. Marcus disagreed; {nonetheless}, he followed orders. {As a consequence}, Sera was never the same.",
+ [["Once","While","Meanwhile"],["in order to","so that","because"],["although","even though","because of"],["so that","because of","despite"],["therefore","moreover","for instance"],["Even so","In contrast","For example"]]],
+["La expedición","Metro","Artyom agreed to leave his station {even though} he was afraid. The tunnels are dangerous {on account of} the mutants, {so} travellers rarely go alone. He packed spare filters {in case} the journey took longer than planned. Some stations welcomed him; {conversely}, others refused to open their gates. He kept walking {until} he saw the lights of Polis. {At last}, he could rest.",
+ [["despite","however","because"],["because","although","so that"],["because","although","unless"],["unless","so that","although"],["likewise","as a result","for instance"],["during","as soon as","unless"],["Otherwise","Whereas","For instance"]]],
+["Recuerdos prestados","Blade Runner","Rachael believed she was human {because} she remembered her childhood. Her memories, {however}, belonged to someone else. The company had implanted them {so that} she would be easier to control. {Unlike} older models, she did not know what she was. Deckard told her the truth, {albeit} reluctantly. {As a result}, she began to question everything. {Rather than} running away, she decided to look for answers.",
+ [["because of","due to","although"],["therefore","likewise","otherwise"],["so as to","in order to","because of"],["Whereas","Although","In contrast"],["despite","because","unless"],["Even so","In contrast","For instance"],["Despite","Because of","Although"]]],
+["El concilio","Dragon Age","The mages and the templars had been enemies for centuries. {Notwithstanding} their history, both sides agreed to meet. The Inquisitor listened to the mages, {as well as} the templars, before deciding. Supporting one side would anger the other; {hence} the long discussions. {Provided that} the peace held, the army could march north. {In the meantime}, scouts watched the mountain roads. {On the whole}, it was a fragile agreement.",
+ [["Although","Even though","Because of"],["whereas","in addition","moreover"],["because","despite","whereas"],["Unless","Despite","Whereas"],["Otherwise","For instance","In short"],["For instance","Unless","Whereas"]]],
+["El último examen","Ender's Game","Ender was exhausted, {yet} the teachers gave him no rest. Each battle was harder than the last; {what is more}, the rules kept changing. {Instead of} complaining, he studied his enemy. {Given that} he was outnumbered, a normal attack would fail. He {therefore} chose a plan nobody expected. {Once} the battle was over, the adults began to cheer.",
+ [["so","because","unless"],["in contrast","as a result","otherwise"],["Despite","Although","Because of"],["Despite","Owing to","Unless"],["although","likewise","otherwise"],["During","Until","Unless"]]],
+["Aprender un idioma","Estilo examen","Learning a language takes time; {nevertheless}, anyone can do it. {As long as} you practise regularly, you will improve. Some learners focus on grammar, {whereas} others prefer conversation. Both methods are useful, {provided that} they are combined. Reading helps too, {especially} when the topic interests you. {Rather than} memorising lists, try to use new words in sentences. {To sum up}, small daily efforts work better than long weekly sessions.",
+ [["therefore","moreover","because of this"],["Unless","Although","Despite"],["unlike","because","so"],["unless","despite","even though"],["whereas","unless","despite"],["Despite","Because of","In case"],["For instance","Otherwise","In contrast"]]],
+["Turismo en pueblos pequeños","Estilo examen","Tourism brings money to small towns. {In addition}, it creates jobs for young people. {However}, too many visitors can damage the places they come to see. Prices rise {owing to} the demand, {so} local families can no longer afford to live in the centre. Some towns now limit the number of visitors {so as to} protect their streets. {Although} these rules are unpopular with businesses, residents usually support them. {Overall}, the aim is balance, not prohibition.",
+ [["In contrast","Otherwise","Nevertheless"],["Therefore","Moreover","Similarly"],["because","although","so that"],["because","although","unless"],["so that","because of","in case"],["Despite","However","Unless"],["For instance","Otherwise","Whereas"]]]
 ];
 
 const LEVELS = ["Recluta","Cadete","Explorador","Sargento","Piloto","Teniente","Capitán","Comandante","Mayor","Coronel","Almirante","Leyenda"];
@@ -511,7 +600,7 @@ const BADGES = [
  ["streak7","Imparable","Cumple la meta 7 días seguidos"],
  ["allfam","Cartógrafo","Estudia palabras de las 14 familias"],
  ["exam100","Examen perfecto","100% en un texto completo"],
- ["traps","Cazatrampas","Termina las 12 trampas"],
+ ["traps","Cazatrampas","Termina todas las trampas"],
  ["m25","25 dominadas","25 palabras en nivel 4 o más"],
  ["mall","Maestría total","Todas las palabras dominadas"]
 ];
@@ -526,11 +615,19 @@ function formsOf(w){
   w.split(" / ").forEach(p=>{ if(p.includes("(to)")){const b=p.replace("(to)","").trim(); out.push(norm(b), norm(b+" to"));} else out.push(norm(p)); });
   return out;
 }
-const WORDS = RAW.map((r,i)=>({id:i,fam:r[0],w:r[1],es:r[2],g:r[3],ex:r[4],d:r[5],f:r[6],fs:r[7],forms:formsOf(r[1])}));
+/* Tipo de hueco que pide cada palabra: sirve para armar opciones parecidas, como en el examen */
+const SL_CONJ="although|even though|because|since|whereas|while|as soon as|once|until|if|unless|as long as|in case|just as|provided that|given that|so that".split("|");
+const SL_COORD="and|but|so|yet".split("|");
+const SL_PREP="despite|in spite of|because of|due to|unlike|besides|during|such as|including|similar to|next to|opposite (to)|namely|for example|for instance|notwithstanding|regardless of|owing to|on account of|instead of|rather than|prior to|in the event of|as well as".split("|");
+const SL_INF=["in order to","so as to"], SL_FOC=["especially","in particular","notably"];
+const SL_X="not only ... but also|as ... as|equally|nearby|also|subsequently|hence|albeit|thereby".split("|");
+const slotOf = w => SL_CONJ.includes(w)?"conj":SL_COORD.includes(w)?"coord":SL_PREP.includes(w)?"prep":SL_INF.includes(w)?"inf":SL_FOC.includes(w)?"foc":SL_X.includes(w)?"x:"+w:"adv";
+const TGROUP={con:"A",cnc:"A",cau:"B",res:"B",add:"C",emp:"C",ill:"C",seq:"D",tim:"D",ccl:"E",gen:"E",cmp:"F",cnd:"G",plc:"H"};
+const WORDS = RAW.map((r,i)=>({id:i,fam:r[0],w:r[1],es:r[2],g:r[3],ex:r[4],d:r[5],f:r[6],fs:r[7],c1:r[8]==="C1",slot:slotOf(r[1]),tg:TGROUP[r[0]],forms:formsOf(r[1])}));
 const FORM_INDEX = {};
 WORDS.forEach(w=>w.forms.forEach(f=>{ if(!(f in FORM_INDEX)) FORM_INDEX[f]=w.id; }));
 const SENTENCES = [];
-WORDS.forEach(w=>{ SENTENCES.push({wid:w.id,t:w.ex,src:"PDF",k:"real"}); SENTENCES.push({wid:w.id,t:w.d,src:"Vida diaria",k:"real"}); SENTENCES.push({wid:w.id,t:w.f,src:w.fs,k:"fic"}); });
+WORDS.forEach(w=>{ SENTENCES.push({wid:w.id,t:w.ex,src:w.c1?"Extra C1":"PDF",k:"real"}); SENTENCES.push({wid:w.id,t:w.d,src:"Vida diaria",k:"real"}); SENTENCES.push({wid:w.id,t:w.f,src:w.fs,k:"fic"}); });
 const parts = t => t.split(/(\{[^}]+\})/).filter(Boolean).map(p=>p[0]==="{"?{b:p.slice(1,-1)}:{t:p});
 const answerOf = t => parts(t).filter(p=>p.b).map(p=>p.b).join(" ");
 const plain = t => t.replace(/[{}]/g,"");
@@ -541,8 +638,8 @@ const displayWord = w => w.w;
 
 /* ===================== ESTADO ===================== */
 const LS = "conectores-cloze-v1";
-const defaults = () => ({v:1,updatedAt:0,xp:0,xpBy:{},bestCombo:0,words:{},days:{},goal:20,examDate:"2026-12-01",traps:{},exams:{},badges:{},newDay:"",newCount:0,
-  prefs:{hMode:"opts",hFams:[],fDir:"en",fMode:"flip",eMode:"opts",tMode:"opts",famFams:[]}});
+const defaults = () => ({v:1,updatedAt:0,xp:0,xpBy:{},bestCombo:0,words:{},days:{},goal:20,examDate:"2026-12-01",traps:{},exams:{},badges:{},newDay:"",newCount:0,miss:{},sims:[],
+  prefs:{hMode:"opts",hFams:[],fDir:"en",fMode:"flip",eMode:"opts",tMode:"opts",famFams:[],diff:"examen",c1:"1"}});
 let S = defaults();
 function loadLocal(){ try{ const r=localStorage.getItem(LS); if(r) S=mergeDefaults(JSON.parse(r)); }catch(e){} }
 function mergeDefaults(o){ const d=defaults(); const s=Object.assign(d,o||{}); s.prefs=Object.assign(defaults().prefs,(o&&o.prefs)||{}); return s; }
@@ -600,10 +697,19 @@ function levelInfo(){
 const ws = id => S.words[id] || (S.words[id]={b:0,due:0,ok:0,bad:0});
 const isSeen = id => !!S.words[id] && (S.words[id].ok+S.words[id].bad>0 || S.words[id].b>0);
 function famMastery(f){ const list=WORDS.filter(w=>w.fam===f); return list.reduce((a,w)=>a+(S.words[w.id]?S.words[w.id].b:0),0)/(list.length*5); }
-const mastered = () => WORDS.filter(w=>S.words[w.id] && S.words[w.id].b>=4).length;
+const mastered = () => WORDS.filter(w=>inPlay(w) && S.words[w.id] && S.words[w.id].b>=4).length;
 function dueList(){ const t=today(); return WORDS.filter(w=>S.words[w.id] && S.words[w.id].b>0 && S.words[w.id].due<=t); }
 function newLeft(){ if(S.newDay!==todayKey()) return NEW_PER_DAY; return Math.max(0,NEW_PER_DAY-S.newCount); }
-const unseen = () => WORDS.filter(w=>!(S.words[w.id] && S.words[w.id].b>0));
+const inPlay = w => !w.c1 || S.prefs.c1!=="0";
+const totalWords = () => WORDS.filter(inPlay).length;
+const unseen = () => WORDS.filter(w=>inPlay(w) && !(S.words[w.id] && S.words[w.id].b>0));
+function addMiss(t,wid,src){ if(wid==null) return; S.miss[t]={wid,n:2,src:src||""}; const ks=Object.keys(S.miss); if(ks.length>80) delete S.miss[ks[0]]; }
+function hitMiss(t){ const m=S.miss[t]; if(!m) return; m.n--; if(m.n<=0) delete S.miss[t]; }
+function sentenceOfBlank(text,n){
+  const sents=text.match(/[^.!?]+[.!?]+\s*/g)||[text]; let c=0;
+  for(const sn of sents){ const k=(sn.match(/\{/g)||[]).length; if(n<c+k){ let j=c-1; return sn.trim().replace(/\{([^}]+)\}/g,(m,x)=>{ j++; return j===n?m:x; }); } c+=k; }
+  return null;
+}
 
 /* Puntos y combos */
 let combo=0;
@@ -635,7 +741,7 @@ function checkBadges(){
   if(FAM_KEYS.every(f=>WORDS.some(w=>w.fam===f && isSeen(w.id)))) set("allfam");
   if(Object.values(S.exams).some(v=>v>=100)) set("exam100");
   if(TRAPS.every((t,i)=>S.traps[i]!=null)) set("traps");
-  const m=mastered(); if(m>=25) set("m25"); if(m>=WORDS.length) set("mall");
+  const m=mastered(); if(m>=25) set("m25"); if(m>=totalWords()) set("mall");
 }
 let tq=[], tBusy=false;
 function toast(html,cls){ tq.push([html,cls||""]); if(!tBusy) nextToast(); }
@@ -680,7 +786,7 @@ const srcChip = s => `<span class="chip src">${esc(s)}</span>`;
 
 function render(){
   const r=route();
-  const views={inicio:viewHome,tarjetas:viewCards,familia:viewFamily,hueco:viewGap,trampas:viewTraps,examen:viewExam,progreso:viewProgress};
+  const views={inicio:viewHome,tarjetas:viewCards,familia:viewFamily,hueco:viewGap,errores:viewGap,trampas:viewTraps,examen:viewExam,progreso:viewProgress};
   (views[r]||viewHome)();
   lastBadges=new Set(Object.keys(S.badges));
   if(!RM){
@@ -704,7 +810,7 @@ function viewHome(){
         <div class="label">Nivel ${L.lvl}</div>
         <div class="row" style="align-items:baseline;gap:10px"><h2>${L.name}</h2><span class="muted mono" style="font-size:14px"><span data-count="${S.xp}">${S.xp}</span> XP</span></div>
         <div class="bar xpb" role="progressbar" aria-label="Progreso al siguiente nivel" aria-valuenow="${Math.round(L.pct*100)}" aria-valuemin="0" aria-valuemax="100"><i style="width:${(L.pct*100).toFixed(1)}%"></i></div>
-        <div class="note">${L.toNext} XP para el siguiente nivel · ${m} de ${WORDS.length} palabras dominadas</div>
+        <div class="note">${L.toNext} XP para el siguiente nivel · ${m} de ${totalWords()} palabras dominadas</div>
       </div>
       <div class="panel stats">
         <div class="stat"><b style="color:var(--xp)" data-count="${st}">${st}</b><small><span class="flame" style="color:var(--xp)">${I.flame}</span> días de racha</small></div>
@@ -720,7 +826,8 @@ function viewHome(){
       <button class="mode" data-act="go" data-to="familia"><div class="scene sc-fam" aria-hidden="true"><span class="tok" style="${famStyle("con")}">but</span><span class="tok" style="${famStyle("cau")}">since</span><span class="tok" style="${famStyle("cnd")}">if</span></div><h3>¿De qué familia es?</h3><p>Aprende qué función cumple cada conector.</p><span class="meta">14 familias</span></button>
       <button class="mode" data-act="go" data-to="hueco"><div class="scene sc-gap" aria-hidden="true"><span class="ln">Late, <span class="slotm"><b class="drop" style="${famStyle("res")}">so</b></span> we left.</span></div><h3>Llena el hueco</h3><p>Una oración, un espacio. Elige o escribe.</p><span class="meta">${SENTENCES.length} oraciones</span></button>
       <button class="mode" data-act="go" data-to="trampas"><div class="scene sc-trap" aria-hidden="true"><div class="pair"><span class="tw w1">although</span><span class="tw w2">despite</span></div><span class="tn">___ the rain</span></div><h3>Trampas típicas</h3><p>although o despite, because o because of…</p><span class="meta">${Object.keys(S.traps).length} de ${TRAPS.length} superadas</span></button>
-      <button class="mode wide primary" data-act="go" data-to="examen"><div class="scene sc-exam" aria-hidden="true"><div class="er"><i style="flex:2"></i><b></b><i style="flex:1"></i></div><div class="er"><i style="flex:1"></i><b></b><i style="flex:2"></i></div><div class="er"><i style="flex:3"></i><b></b></div></div><span class="txt"><h3>Texto completo estilo examen</h3><p>Un párrafo con 5 o 6 huecos, como en el cloze real.</p></span><span class="meta">${Object.keys(S.exams).length}/${PASSAGES.length}</span></button>
+      <button class="mode wide primary" data-act="go" data-to="examen"><div class="scene sc-exam" aria-hidden="true"><div class="er"><i style="flex:2"></i><b></b><i style="flex:1"></i></div><div class="er"><i style="flex:1"></i><b></b><i style="flex:2"></i></div><div class="er"><i style="flex:3"></i><b></b></div></div><span class="txt"><h3>Texto completo estilo examen</h3><p>Párrafos con 5 a 7 huecos y un simulacro con reloj.</p></span><span class="meta">${Object.keys(S.exams).length}/${PASSAGES.length}</span></button>
+      <button class="mode wide" data-act="go" data-to="errores"><div class="scene sc-miss" aria-hidden="true"><span class="mx">despite of</span><span class="mo">despite</span></div><span class="txt"><h3>Mis errores</h3><p>Los huecos que fallaste, hasta que los aciertes dos veces.</p></span><span class="meta">${Object.keys(S.miss).length} pendientes</span></button>
       <button class="mode wide" data-act="go" data-to="progreso"><div class="scene sc-prog" aria-hidden="true">${["cnc","cau","con","tim","ccl"].map((f,i)=>`<i style="${famStyle(f)};--t:${[.5,.9,.7,1,.6][i]};--d:${i}"></i>`).join("")}</div><span class="txt"><h3>Progreso</h3><p>Qué familias dominas, cuáles te cuestan y tus logros.</p></span><span class="meta">${Object.keys(S.badges).length}/${BADGES.length} logros</span></button>
     </section>
     <p class="note">Sugerencia: ${due>0?`empieza con tus ${due} tarjetas pendientes y luego haz un texto completo.`:nw>0?`aprende ${nw} tarjetas nuevas y después practica con «Llena el hueco».`:"hoy ya cubriste tus tarjetas; practica un texto completo o las trampas."}</p>
@@ -750,25 +857,25 @@ function viewCards(){
   const w=WORDS[C.q[0]], s=ws(w.id), isNew=!(s.b>0);
   const front = P.fDir==="en" ? `<div class="big fw" style="${famStyle(w.fam)}">${esc(w.w)}</div>` : `<div class="big">${esc(w.es)}</div>`;
   const exHtml = esc(w.ex).replace(/\{([^}]+)\}/g,"<mark>$1</mark>");
-  const back = `<div class="row">${famChip(w.fam)}<span class="spacer"></span><span class="note">caja ${s.b}/5</span></div>
+  const back = `<div class="row">${famChip(w.fam)}<span class="spacer"></span>${w.c1?`<span class="chip src">Extra C1</span>`:""}<span class="note">caja ${s.b}/5</span></div>
      <div><div class="label">${P.fDir==="en"?"Significa":"En inglés"}</div><div style="font-size:30px;line-height:1.15;${P.fDir==="en"?"font-family:var(--f-display);font-weight:800":famStyle(w.fam)}" class="${P.fDir==="en"?"":"fw"}">${esc(P.fDir==="en"?w.es:w.w)}</div></div>
      <div class="rule">${esc(w.g)}</div>
      <div class="ex">${exHtml}</div>
      <div class="note">${esc(plain(w.f))} <i>(${esc(w.fs)})</i></div>`;
   let typingHtml="";
-  if(P.fMode==="type" && !C.flipped){
+  if(P.fMode==="type" && !C.revealed){
     typingHtml=`<form class="typing" data-form="cardType"><input id="cardInput" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="${P.fDir==="en"?"Escribe el significado en español":"Escribe la palabra en inglés"}"><button class="btn" type="submit">Revisar</button></form>`;
   }
   let typedFb="";
   if(C.typed){ typedFb=`<div class="fb ${C.typed.ok?"good":"bad"}"><div class="verdict">${C.typed.ok?"¡Correcto!":"No exactamente"}</div><div>Escribiste: <span class="w">${esc(C.typed.v||"(vacío)")}</span></div></div>`; }
   app.innerHTML = head + `<div class="stack">
     <div class="row"><span class="note">${C.q.length} en la fila${isNew?" · palabra nueva":""}</span><span class="spacer"></span><span class="note">Hechas hoy: ${C.done}</span></div>
-    <div class="flipwrap${C.deal?" deal":""}"><div class="flip ${C.flipped&&!C.anim?"on":""}" data-act="${P.fMode==="flip"?"flip":""}" role="button" tabindex="0" aria-label="Voltear tarjeta">
+    <div class="flipwrap${C.deal?" deal":""}"><div class="flip ${C.flipped&&!C.anim?"on":""}" data-act="${P.fMode==="flip"||C.revealed?"flip":""}" role="button" tabindex="0" aria-label="Voltear tarjeta">
       <div class="face front">${front}<div class="tap">${P.fMode==="flip"?"Toca para voltear":"Escribe tu respuesta abajo"}</div></div>
-      <div class="face back">${back}</div>
+      <div class="face back">${back}<div class="tap" style="margin-top:auto">Toca para voltear de nuevo</div></div>
     </div></div>
     ${typingHtml}${typedFb}
-    ${C.flipped?`<div class="grade" role="group" aria-label="¿Qué tan bien la sabías?">
+    ${C.revealed?`<div class="grade" role="group" aria-label="¿Qué tan bien la sabías?">
       <button class="g1" data-act="grade" data-g="1">Otra vez<small>vuelve en un rato</small></button>
       <button class="g2" data-act="grade" data-g="2">Difícil<small>mañana</small></button>
       <button class="g3" data-act="grade" data-g="3">La sabía<small>en ${INTERVALS[Math.min(5,Math.max(1,s.b+1))]} día${INTERVALS[Math.min(5,Math.max(1,s.b+1))]===1?"":"s"}</small></button>
@@ -791,7 +898,7 @@ function gradeCard(g){
   else if(g===2){ s.b=Math.max(1,s.b); s.due=t+1; s.ok++; }
   else { s.b=Math.min(5,s.b+1); s.due=t+INTERVALS[s.b]; s.ok++; }
   if(wasNew){ if(S.newDay!==todayKey()){S.newDay=todayKey();S.newCount=0;} S.newCount++; }
-  C.done++; C.flipped=false; C.typed=null; C.deal=true;
+  C.done++; C.flipped=false; C.revealed=false; C.typed=null; C.deal=true;
   award(g>1, g===3?8:5, id, {noWord:true});
   viewCards();
 }
@@ -799,13 +906,13 @@ function gradeCard(g){
 /* ---------- Familia ---------- */
 function newFamQ(){
   const fams=S.prefs.famFams.length?S.prefs.famFams:FAM_KEYS;
-  const pool=WORDS.filter(w=>fams.includes(w.fam));
+  let pool=WORDS.filter(w=>fams.includes(w.fam)&&inPlay(w)); if(!pool.length) pool=WORDS.filter(inPlay);
   const w=pool[Math.floor(Math.random()*pool.length)];
   if(Math.random()<0.65){
     const others=shuffle(FAM_KEYS.filter(f=>f!==w.fam)).slice(0,3);
     return {type:"w2f",wid:w.id,opts:shuffle([w.fam,...others]),ans:w.fam,picked:null};
   }
-  const others=shuffle(WORDS.filter(x=>x.fam!==w.fam)).slice(0,3).map(x=>x.id);
+  const others=shuffle(WORDS.filter(x=>x.fam!==w.fam&&inPlay(x))).slice(0,3).map(x=>x.id);
   return {type:"f2w",fam:w.fam,wid:w.id,opts:shuffle([w.id,...others]),ans:w.id,picked:null};
 }
 function famFilter(key){
@@ -844,8 +951,14 @@ function viewFamily(){
 /* ---------- Llena el hueco ---------- */
 let recentS=[];
 function newGapQ(){
+  if(route()==="errores"){
+    const keys=Object.keys(S.miss).filter(t=>WORDS[S.miss[t].wid]); if(!keys.length) return null;
+    let c=keys.filter(t=>t!==recentS[recentS.length-1]); if(!c.length) c=keys;
+    const t=pick(c), m=S.miss[t]; recentS.push(t); if(recentS.length>12) recentS.shift();
+    return {sen:{t,src:m.src||"Mis errores",k:"miss"}, wid:m.wid, opts:shuffle([m.wid,...distractors(m.wid,3,true)]), picked:null, typed:null, res:null, hint:false};
+  }
   const fams=S.prefs.hFams.length?S.prefs.hFams:FAM_KEYS;
-  const pool=WORDS.filter(w=>fams.includes(w.fam));
+  let pool=WORDS.filter(w=>fams.includes(w.fam)&&inPlay(w)); if(!pool.length) pool=WORDS.filter(inPlay);
   const weights=pool.map(w=>{ const s=S.words[w.id]; return 1+(s?s.bad*2+(5-s.b):5); });
   let tot=weights.reduce((a,b)=>a+b,0), r=Math.random()*tot, w=pool[0];
   for(let i=0;i<pool.length;i++){ r-=weights[i]; if(r<=0){ w=pool[i]; break; } }
@@ -853,13 +966,25 @@ function newGapQ(){
   const wantFic=Math.random()<0.5;
   let c=cands.filter(s=>(s.k==="fic")===wantFic && !recentS.includes(s.t)); if(!c.length) c=cands;
   const sen=pick(c); recentS.push(sen.t); if(recentS.length>12) recentS.shift();
-  return {sen, wid:w.id, opts:shuffle([w.id,...distractors(w.id,3)]), picked:null, typed:null, res:null, hint:false};
+  return {sen, wid:w.id, opts:shuffle([w.id,...distractors(w.id,3,S.prefs.diff!=="normal")]), picked:null, typed:null, res:null, hint:false};
 }
-function distractors(wid,n){
-  const fam=WORDS[wid].fam, out=[], usedF=new Set([fam]);
-  for(const x of shuffle(WORDS)){ if(out.length>=n) break; if(usedF.has(x.fam)) continue; usedF.add(x.fam); out.push(x.id); }
+/* Fácil: opciones de otras familias. Tipo examen: palabras de significado cercano que piden OTRA gramática
+   (although / despite / however), y si faltan, palabras con la misma gramática pero otro significado. */
+function distractors(wid,n,hard){
+  const w=WORDS[wid], ok=x=>x.id!==wid && inPlay(x) && !x.w.includes("..."), out=[];
+  if(!hard){
+    const usedF=new Set([w.fam]);
+    for(const x of shuffle(WORDS)){ if(out.length>=n) break; if(!ok(x)||usedF.has(x.fam)) continue; usedF.add(x.fam); out.push(x.id); }
+    return out;
+  }
+  const near=shuffle(WORDS.filter(x=>ok(x)&&x.tg===w.tg&&x.slot!==w.slot)), seen=new Set();
+  for(const x of near){ if(out.length>=n) break; if(seen.has(x.slot)) continue; seen.add(x.slot); out.push(x.id); }
+  for(const x of near){ if(out.length>=n) break; if(!out.includes(x.id)) out.push(x.id); }
+  for(const x of shuffle(WORDS.filter(x=>ok(x)&&x.tg!==w.tg&&x.slot===w.slot))){ if(out.length>=n) break; out.push(x.id); }
+  for(const x of shuffle(WORDS)){ if(out.length>=n) break; if(ok(x)&&x.tg!==w.tg&&!out.includes(x.id)) out.push(x.id); }
   return out;
 }
+const diffSeg = () => `<div class="seg" role="group" aria-label="Dificultad de las opciones"><button data-act="pref" data-k="diff" data-v="normal" aria-pressed="${S.prefs.diff==="normal"}">Fácil</button><button data-act="pref" data-k="diff" data-v="examen" aria-pressed="${S.prefs.diff!=="normal"}">Tipo examen</button></div>`;
 function sentenceHtml(t, res, label, fam){
   return parts(t).map(p=>{
     if(p.t) return esc(p.t);
@@ -875,7 +1000,9 @@ function typedVerdict(input, wid){
   return "bad";
 }
 function viewGap(){
+  const missMode=route()==="errores";
   if(!V.gap) V.gap=newGapQ();
+  if(!V.gap){ app.innerHTML=`${topBar("Mis errores")}<div class="panel stack center done"><h2>Sin errores pendientes</h2><p class="muted">Cada hueco que falles en cualquier modo se guarda aquí, y sale de la lista cuando lo aciertas dos veces.</p><button class="btn" data-act="go" data-to="examen">Ir a un texto completo</button></div>`; return; }
   const Q=V.gap, P=S.prefs, w=WORDS[Q.wid], answered=Q.res!=null;
   const multi=parts(Q.sen.t).filter(p=>p.b).length>1;
   let body="";
@@ -897,10 +1024,10 @@ function viewGap(){
       <div class="rule"><b>Por qué:</b> ${FAM[w.fam].d} ${esc(w.g)}</div>${chosen}</div>
       <button class="btn" data-act="gapNext">Siguiente <span class="mono" style="opacity:.7;font-size:12px">Enter</span></button>`;
   }
-  app.innerHTML = `${topBar("Llena el hueco")}
+  app.innerHTML = `${topBar(missMode?"Mis errores":"Llena el hueco")}
    <div class="stack">
-    <div class="row"><div class="seg" role="group" aria-label="Forma de responder"><button data-act="pref" data-k="hMode" data-v="opts" aria-pressed="${P.hMode==="opts"}">Opciones</button><button data-act="pref" data-k="hMode" data-v="type" aria-pressed="${P.hMode==="type"}">Escribir</button></div></div>
-    ${famFilter("hFams")}
+    <div class="row"><div class="seg" role="group" aria-label="Forma de responder"><button data-act="pref" data-k="hMode" data-v="opts" aria-pressed="${P.hMode==="opts"}">Opciones</button><button data-act="pref" data-k="hMode" data-v="type" aria-pressed="${P.hMode==="type"}">Escribir</button></div>${!missMode&&P.hMode==="opts"?diffSeg():""}</div>
+    ${missMode?`<p class="note">${Object.keys(S.miss).length} huecos pendientes. Cada uno sale de la lista al acertarlo dos veces.</p>`:famFilter("hFams")}
     <div class="panel q">
       <div class="head">${srcChip(Q.sen.src)}${answered?famChip(w.fam):""}</div>
       <div class="sentence">${sentenceHtml(Q.sen.t, answered?Q.res:null, null, w.fam)}</div>
@@ -913,7 +1040,8 @@ function answerGap(picked, typed){
   const Q=V.gap; if(Q.res) return;
   if(typed!=null){ Q.typed=typed; Q.res=typedVerdict(typed,Q.wid); award(Q.res!=="bad", Q.res==="good"?15:8, Q.wid); }
   else { Q.picked=picked; Q.res = picked===Q.wid?"good":"bad"; award(Q.res==="good",10,Q.wid); }
-  viewGap();
+  if(Q.res==="good") hitMiss(Q.sen.t); else addMiss(Q.sen.t,Q.wid,Q.sen.src);
+  save(); viewGap();
 }
 
 /* ---------- Trampas ---------- */
@@ -957,22 +1085,48 @@ function answerTrap(v){
   T.picked=v; T.res = norm(v)===norm(answerOf(it[0]))?"good":"bad"; if(T.res==="good") T.ok++;
   const wid=FORM_INDEX[norm(answerOf(it[0]))];
   award(T.res==="good", S.prefs.tMode==="type"?15:10, wid!=null?wid:null);
+  if(T.res!=="good"){ addMiss(it[0],wid,"Trampa: "+TRAPS[T.i][0]); save(); }
   viewTraps();
 }
 
 /* ---------- Examen ---------- */
 function startExam(i){
-  const p=PASSAGES[i];
-  const blanks=parts(p[2]).filter(x=>x.b).map(x=>{ const wid=FORM_INDEX[norm(x.b)]; return {b:x.b, wid, opts:shuffle([wid,...distractors(wid,3)]), val:null, typed:""}; });
+  const p=PASSAGES[i], hard=S.prefs.diff!=="normal";
+  const blanks=parts(p[2]).filter(x=>x.b).map((x,n)=>{ const wid=FORM_INDEX[norm(x.b)];
+    const ds = p[3] ? p[3][n].map(o=>FORM_INDEX[norm(o)]) : distractors(wid,3,hard);
+    return {b:x.b, wid, opts:shuffle([wid,...ds]), val:null, typed:""}; });
   V.exam={i, blanks, sel:0, checked:false};
 }
+/* Simulacro: 3 textos seguidos con reloj */
+let simT=null;
+function stopSim(){ clearInterval(simT); simT=null; V.sim=null; }
+function simLeft(){ const M=V.sim; return Math.round(M.limit-((M.pausedAt||Date.now())-M.t0)/1000); }
+const fmtT = sec => { const n=Math.abs(sec); return (sec<0?"+":"")+Math.floor(n/60)+":"+String(n%60).padStart(2,"0"); };
 function viewExam(){
-  const E=V.exam;
+  const E=V.exam, M=V.sim;
+  if(M&&M.done){
+    const pct=Math.round(M.ok/M.tot*100), late=M.sec>M.limit;
+    const msg = pct>=85 ? "Muy bien: este es el ritmo que buscas para los conectores de un C1." : pct>=65 ? "Vas cerca. Repasa «Mis errores» y repite el simulacro mañana." : "Todavía cuesta. Antes de otro simulacro, trabaja las Trampas y «Mis errores».";
+    app.innerHTML=`${topBar("Resultado del simulacro")}<div class="stack">
+      <div class="panel stack center done"><div class="big-num" style="color:${pct>=85?"var(--good)":"var(--ink)"}" data-count="${pct}" data-suf="%">${pct}%</div>
+        <p class="muted">${M.ok} de ${M.tot} huecos · tiempo ${fmtT(M.sec)} de ${fmtT(M.limit)}${late?" (te pasaste)":""}</p><p>${msg}</p>
+        <p class="note">Meta sugerida: 85% o más dentro del tiempo.</p></div>
+      <div class="row"><button class="btn" data-act="simStart">Otro simulacro</button><button class="btn line" data-act="go" data-to="errores">Repasar mis errores</button><button class="btn ghost" data-act="examList">Volver</button></div></div>`;
+    countUps(app); return;
+  }
   if(!E){
+    const last=S.sims.length?S.sims[S.sims.length-1]:null, best=S.sims.reduce((a,b)=>Math.max(a,b.pct),0);
     app.innerHTML=`${topBar("Texto completo")}<div class="stack">
-     <p class="muted">Lee todo el párrafo primero. Luego, para cada hueco, pregúntate qué relación hay entre las dos ideas.</p>
-     <button class="btn" data-act="examRandom">Texto al azar</button>
-     <div class="list">${PASSAGES.map((p,i)=>`<button class="item" data-act="examOpen" data-i="${i}"><span class="txt"><b>${esc(p[0])}</b><span>${esc(p[1])} · ${parts(p[2]).filter(x=>x.b).length} huecos</span></span><span class="score" style="color:${S.exams[i]==null?"var(--muted)":S.exams[i]===100?"var(--good)":"var(--near)"}">${S.exams[i]==null?"nuevo":S.exams[i]+"%"}</span></button>`).join("")}</div></div>`;
+     <div class="panel stack" style="gap:10px"><div class="row"><h3 style="font-size:18px">Simulacro con reloj</h3><span class="spacer"></span>${last?`<span class="note">último ${last.pct}% · mejor ${best}%</span>`:""}</div>
+       <p class="muted" style="font-size:15px">3 textos de nivel examen seguidos en 12 minutos, con opciones parecidas entre sí. El reloj se pausa mientras lees las explicaciones.</p>
+       <button class="btn" data-act="simStart">Empezar simulacro</button></div>
+     <details class="panel guide"><summary>Método de 4 pasos para cada hueco</summary><ol class="steps">
+       <li><b>Lee la oración completa</b> y también la anterior. No respondas viendo solo el hueco.</li>
+       <li><b>¿Qué relación hay entre las dos ideas?</b> Suma, contraste, causa, resultado, condición, ejemplo…</li>
+       <li><b>Mira la puntuación.</b> «; ___ ,» o «. ___ ,» pide however, therefore, moreover, nevertheless. Solo una coma antes «, ___» pide but, so, yet, whereas.</li>
+       <li><b>Mira qué viene después.</b> Sujeto + verbo: although, because, unless, so that. Nombre o -ing: despite, because of, owing to, instead of. Verbo base: in order to, so as to.</li></ol></details>
+     <div class="row"><button class="btn line" data-act="examRandom">Texto al azar</button></div>
+     <div class="list">${PASSAGES.map((p,i)=>`<button class="item" data-act="examOpen" data-i="${i}"><span class="txt"><b>${esc(p[0])}</b><span>${esc(p[1])} · ${parts(p[2]).filter(x=>x.b).length} huecos${p[3]?" · nivel examen":""}</span></span><span class="score" style="color:${S.exams[i]==null?"var(--muted)":S.exams[i]===100?"var(--good)":"var(--near)"}">${S.exams[i]==null?"nuevo":S.exams[i]+"%"}</span></button>`).join("")}</div></div>`;
     return;
   }
   const p=PASSAGES[E.i], P=S.prefs; let n=-1;
@@ -999,10 +1153,10 @@ function viewExam(){
         return `<li style="--i:${i}"><span class="n ${B.ok?"ok":"no"}">${i+1}</span><div style="min-width:0"><div>${famWord(w.fam,w.w)} = ${esc(w.es)} ${famChip(w.fam)}</div>
         <div class="note">${FAM[w.fam].d} ${esc(w.g)}</div>
         ${!B.ok?`<div class="note" style="color:var(--bad)">Tu respuesta: ${esc(P.eMode==="opts"?(mine?mine.w+" ("+FAM[mine.fam].n+")":"—"):(B.typed||"—"))}${B.near?" · misma familia, pero no encaja aquí":""}</div>`:""}</div></li>`; }).join("")}</ol></div>
-      <div class="row"><button class="btn" data-act="examRetry">Repetir</button><button class="btn line" data-act="examRandom">Otro texto</button><button class="btn ghost" data-act="examList">Todos</button></div>`;
+      ${M?`<button class="btn" data-act="simNext">${M.idx+1<M.list.length?"Siguiente texto":"Ver resultado del simulacro"}</button>`:`<div class="row"><button class="btn" data-act="examRetry">Repetir</button><button class="btn line" data-act="examRandom">Otro texto</button><button class="btn ghost" data-act="examList">Todos</button></div>`}`;
   }
   app.innerHTML=`${topBar(esc(p[0]))}<div class="stack">
-    <div class="row"><div class="seg" role="group" aria-label="Forma de responder"><button data-act="pref" data-k="eMode" data-v="opts" aria-pressed="${P.eMode==="opts"}">Opciones</button><button data-act="pref" data-k="eMode" data-v="type" aria-pressed="${P.eMode==="type"}">Escribir</button></div><span class="spacer"></span>${srcChip(p[1])}</div>
+    <div class="row"><div class="seg" role="group" aria-label="Forma de responder"><button data-act="pref" data-k="eMode" data-v="opts" aria-pressed="${P.eMode==="opts"}">Opciones</button><button data-act="pref" data-k="eMode" data-v="type" aria-pressed="${P.eMode==="type"}">Escribir</button></div>${!p[3]&&!M&&P.eMode==="opts"&&!E.checked?diffSeg():""}<span class="spacer"></span>${M?`<span class="pill">Texto ${M.idx+1}/${M.list.length}</span><span class="pill mono${simLeft()<0?" late":""}" id="simTimer">${fmtT(simLeft())}</span>`:srcChip(p[1])}</div>
     <div class="panel"><p class="passage">${text}</p></div>${panel}</div>`;
   if(E.checked) countUps(app);
 }
@@ -1015,6 +1169,8 @@ function checkExam(){
   E.checked=true;
   const ok=E.blanks.filter(B=>B.ok).length, pct=Math.round(ok/E.blanks.length*100);
   S.exams[E.i]=Math.max(S.exams[E.i]||0,pct);
+  if(V.sim){ V.sim.ok+=ok; V.sim.tot+=E.blanks.length; V.sim.pausedAt=Date.now(); }
+  E.blanks.forEach((B,n)=>{ if(!B.ok){ const t=sentenceOfBlank(PASSAGES[E.i][2],n); if(t) addMiss(t,B.wid,PASSAGES[E.i][1]); } });
   const k=todayKey(); S.days[k]=(S.days[k]||0)+E.blanks.length;
   E.blanks.forEach(B=>{ const s=ws(B.wid); if(B.ok) s.ok++; else { s.bad++; if(s.b>1) s.b--; s.due=Math.min(s.due||0,today()); } });
   const lvlB=levelInfo().lvl, goalB=(S.days[k]||0)-E.blanks.length<S.goal && (S.days[k]||0)>=S.goal;
@@ -1033,7 +1189,7 @@ function viewProgress(){
   const L=levelInfo(), dl=Math.max(0,daysLeft()), m=mastered(), st=streak();
   const fams=FAM_KEYS.map(f=>({f,m:famMastery(f)})).sort((a,b)=>a.m-b.m);
   const hard=WORDS.filter(w=>S.words[w.id]&&S.words[w.id].bad>0).sort((a,b)=>S.words[b.id].bad-S.words[a.id].bad).slice(0,12);
-  const notMastered=WORDS.length-m, perDay=dl>0?Math.ceil(notMastered/dl):notMastered;
+  const notMastered=totalWords()-m, perDay=dl>0?Math.ceil(notMastered/dl):notMastered;
   const last14=[]; for(let i=13;i>=0;i--){ const k=keyFromNum(today()-i); last14.push({k,v:S.days[k]||0}); }
   const maxV=Math.max(S.goal,...last14.map(x=>x.v));
   const confirmReset=V.reset;
@@ -1059,11 +1215,12 @@ function viewProgress(){
     </section>
     <section class="panel stack">
       <h3 style="font-size:18px">Tu plan hacia el examen</h3>
-      <p>Tienes <b>${m}</b> de <b>${WORDS.length}</b> palabras dominadas. Faltan <b>${dl}</b> días: con unas <b>${perDay}</b> palabras nuevas o repasadas al día llegas cubriendo todo.</p>
+      <p>Tienes <b>${m}</b> de <b>${totalWords()}</b> palabras dominadas. Faltan <b>${dl}</b> días: con unas <b>${perDay}</b> palabras nuevas o repasadas al día llegas cubriendo todo.</p>
       <div class="row" style="align-items:flex-end;gap:14px">
         <label class="field">Fecha del examen<input type="date" id="examDate" value="${esc(S.examDate)}"></label>
         <label class="field">Meta diaria (respuestas)<input type="number" id="goalInput" min="5" max="200" step="5" value="${S.goal}" style="width:8em"></label>
       </div>
+      <div class="row"><span style="font-size:14px;font-weight:700">Conectores extra de nivel C1 (${WORDS.filter(w=>w.c1).length})</span><div class="seg" role="group" aria-label="Conectores extra C1"><button data-act="pref" data-k="c1" data-v="1" aria-pressed="${S.prefs.c1!=="0"}">Incluir</button><button data-act="pref" data-k="c1" data-v="0" aria-pressed="${S.prefs.c1==="0"}">Solo los del PDF</button></div></div>
     </section>
     ${hard.length?`<section class="panel stack"><h3 style="font-size:18px">Las que más te cuestan</h3><div class="hard">${hard.map(w=>`<span>${esc(w.w)} <em>×${S.words[w.id].bad}</em></span>`).join("")}</div></section>`:""}
     <section class="panel stack"><h3 style="font-size:18px">Logros</h3><div class="badges">${BADGES.map(b=>`<div class="badge ${S.badges[b[0]]?"on":""}"><b>${b[1]}</b><small>${b[2]}</small></div>`).join("")}</div></section>
@@ -1089,14 +1246,18 @@ const ACT = {
   go(d){ location.hash=d.to; },
   theme(){ const next=isDark()?"light":"dark"; document.documentElement.setAttribute("data-theme",next); try{localStorage.setItem(LS+"-theme",next);}catch(e){} render(); },
   pref(d){ S.prefs[d.k]=d.v; save();
-    if(d.k==="fMode"||d.k==="fDir"){ if(V.cards){V.cards.flipped=false;V.cards.typed=null;} }
+    if(d.k==="fMode"||d.k==="fDir"){ if(V.cards){V.cards.flipped=false;V.cards.revealed=false;V.cards.typed=null;} }
     if(d.k==="hMode") V.gap=null;
+    if(d.k==="diff"){ V.gap=null; if(V.exam&&!V.exam.checked&&!V.sim) startExam(V.exam.i); }
+    if(d.k==="c1"){ V.gap=null; V.fam=null; V.cards=null; }
     if(d.k==="tMode" && V.trap && V.trap.step==="q" && V.trap.res==null){}
     if(d.k==="eMode" && V.exam && !V.exam.checked){ V.exam.blanks.forEach(B=>{B.val=null;B.typed="";}); V.exam.sel=0; }
     render(); },
   famAll(d){ S.prefs[d.k]=[]; save(); if(d.k==="hFams") V.gap=null; else V.fam=null; render(); },
   famTog(d){ const a=S.prefs[d.k]; const i=a.indexOf(d.f); if(i>=0) a.splice(i,1); else a.push(d.f); save(); if(d.k==="hFams") V.gap=null; else V.fam=null; render(); },
-  flip(){ if(!V.cards||V.cards.flipped) return; V.cards.flipped=true; V.cards.anim=true; viewCards(); },
+  flip(){ const C=V.cards; if(!C) return;
+    if(!C.revealed){ C.flipped=true; C.revealed=true; C.anim=true; viewCards(); return; }
+    C.flipped=!C.flipped; const f=app.querySelector(".flip"); if(f) f.classList.toggle("on",C.flipped); },
   grade(d){ const g=+d.g, w=app.querySelector(".flipwrap"); if(RM||!w){ gradeCard(g); return; } busy=true; w.classList.add(g===1?"out-l":g===3?"out-r":"out-u"); setTimeout(()=>{ busy=false; gradeCard(g); },280); },
   cardsExtra(){ V.cards={q:buildCardQueue(true),flipped:false,done:V.cards?V.cards.done:0,typed:null}; viewCards(); },
   famPick(d){ const Q=V.fam; if(Q.picked!=null) return; Q.picked = Q.type==="w2f"? d.v : +d.v; const ok=String(Q.picked)===String(Q.ans); award(ok,10,Q.wid); viewFamily(); },
@@ -1111,7 +1272,15 @@ const ACT = {
   trapNext(){ const T=V.trap; if(T.k+1<T.items.length){ T.k++; T.res=null; T.picked=null; } else { T.step="end"; const pct=Math.round(T.ok/T.items.length*100); S.traps[T.i]=Math.max(S.traps[T.i]||0,pct); const had=new Set(Object.keys(S.badges)); checkBadges(); save(); BADGES.forEach(b=>{ if(S.badges[b[0]]&&!had.has(b[0])) toast("Logro desbloqueado: "+b[1],"badge"); }); if(pct===100) setTimeout(()=>burst(innerWidth/2,innerHeight*.3,110),350); } viewTraps(); },
   examOpen(d){ startExam(+d.i); viewExam(); window.scrollTo(0,0); },
   examRandom(){ let i=Math.floor(Math.random()*PASSAGES.length); if(V.exam&&PASSAGES.length>1&&i===V.exam.i) i=(i+1)%PASSAGES.length; startExam(i); viewExam(); window.scrollTo(0,0); },
-  examList(){ V.exam=null; viewExam(); },
+  examList(){ stopSim(); V.exam=null; viewExam(); },
+  simStart(){ const pool=PASSAGES.map((p,i)=>i).filter(i=>PASSAGES[i][3]); const list=shuffle(pool).slice(0,3);
+    stopSim(); V.sim={list,idx:0,ok:0,tot:0,t0:Date.now(),limit:12*60,done:false}; startExam(list[0]);
+    simT=setInterval(()=>{ if(!V.sim||V.sim.done){ clearInterval(simT); return; } const el=document.getElementById("simTimer"); if(el){ const sec=simLeft(); el.textContent=fmtT(sec); el.classList.toggle("late",sec<0); } },1000);
+    viewExam(); window.scrollTo(0,0); },
+  simNext(){ const M=V.sim; if(!M) return; if(M.pausedAt){ M.t0+=Date.now()-M.pausedAt; M.pausedAt=0; }
+    if(M.idx+1<M.list.length){ M.idx++; startExam(M.list[M.idx]); }
+    else { M.done=true; M.sec=Math.round((Date.now()-M.t0)/1000); clearInterval(simT); const pct=Math.round(M.ok/M.tot*100); S.sims.push({d:todayKey(),pct,sec:M.sec}); if(S.sims.length>20) S.sims.shift(); save(); V.exam=null; if(pct>=85) setTimeout(()=>burst(innerWidth/2,innerHeight*.3,130),350); }
+    viewExam(); window.scrollTo(0,0); },
   examRetry(){ startExam(V.exam.i); viewExam(); },
   examSel(d){ if(V.exam.checked) return; V.exam.sel=+d.n; viewExam(); },
   examPick(d,b){ if(!d.fly){ busy=true; return flyWord(b, app.querySelector(".slot.sel"), WORDS[+d.v].w).then(()=>{ busy=false; ACT.examPick({v:d.v,fly:1}); }); } const E=V.exam; E.blanks[E.sel].val=+d.v; const nx=E.blanks.findIndex((B,i)=>i>E.sel&&B.val==null); const any=E.blanks.findIndex(B=>B.val==null); E.sel = nx>=0?nx:(any>=0?any:E.sel); viewExam(); },
@@ -1139,7 +1308,7 @@ app.addEventListener("submit",e=>{
   if(kind==="cardType"){
     const C=V.cards, w=WORDS[C.q[0]], v=document.getElementById("cardInput").value;
     const ok = S.prefs.fDir==="en" ? checkMeaning(v,w.es) : w.forms.includes(norm(v));
-    C.typed={v,ok}; C.flipped=true; C.anim=true; viewCards();
+    C.typed={v,ok}; C.flipped=true; C.revealed=true; C.anim=true; viewCards();
   }
 });
 app.addEventListener("input",e=>{
@@ -1157,16 +1326,16 @@ document.addEventListener("keydown",e=>{
   const r=route();
   if(/^[1-4]$/.test(e.key)){
     const btns=[...app.querySelectorAll(".opt:not([disabled])")]; const b=btns[+e.key-1]; if(b){ e.preventDefault(); b.click(); }
-    if(r==="tarjetas"&&V.cards&&V.cards.flipped){ const g=app.querySelector(`[data-act="grade"][data-g="${e.key}"]`); if(g){ e.preventDefault(); g.click(); } }
+    if(r==="tarjetas"&&V.cards&&V.cards.revealed){ const g=app.querySelector(`[data-act="grade"][data-g="${e.key}"]`); if(g){ e.preventDefault(); g.click(); } }
     return;
   }
   if(e.key==="Enter"||e.key===" "){
-    if(r==="tarjetas"&&V.cards&&!V.cards.flipped&&S.prefs.fMode==="flip"){ e.preventDefault(); ACT.flip(); return; }
+    if(r==="tarjetas"&&V.cards&&(V.cards.revealed||S.prefs.fMode==="flip")){ e.preventDefault(); ACT.flip(); return; }
     if(e.key!=="Enter") return;
     const next=app.querySelector('[data-act="gapNext"],[data-act="famNext"],[data-act="trapNext"]'); if(next){ e.preventDefault(); next.click(); }
   }
 });
-window.addEventListener("hashchange",()=>{ render(); window.scrollTo(0,0); });
+window.addEventListener("hashchange",()=>{ V.gap=null; if(route()!=="examen"&&V.sim){ stopSim(); V.exam=null; } render(); window.scrollTo(0,0); });
 
 /* ===================== EFECTOS ===================== */
 const RM = matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -1256,7 +1425,7 @@ function showLevelUp(L){
 
 /* ===================== EXPORTAR / IMPORTAR ===================== */
 function exportCode(){
-  const o={v:1,xp:S.xp,xpBy:S.xpBy,bestCombo:S.bestCombo,words:S.words,days:S.days,traps:S.traps,exams:S.exams,badges:S.badges,exportedAt:new Date().toISOString()};
+  const o={v:1,xp:S.xp,xpBy:S.xpBy,bestCombo:S.bestCombo,words:S.words,days:S.days,traps:S.traps,exams:S.exams,badges:S.badges,miss:S.miss,sims:S.sims,exportedAt:new Date().toISOString()};
   return "CLOZE1:"+btoa(unescape(encodeURIComponent(JSON.stringify(o))));
 }
 function runImport(text){
@@ -1272,6 +1441,8 @@ function runImport(text){
   for(const k in (o.traps||{})) S.traps[k]=Math.max(S.traps[k]==null?0:S.traps[k],o.traps[k]||0);
   for(const k in (o.exams||{})) S.exams[k]=Math.max(S.exams[k]==null?0:S.exams[k],o.exams[k]||0);
   for(const k in (o.badges||{})) if(!S.badges[k]) S.badges[k]=o.badges[k];
+  for(const k in (o.miss||{})) if(!S.miss[k]) S.miss[k]=o.miss[k];
+  (o.sims||[]).forEach(x=>{ if(!S.sims.some(y=>y.d===x.d&&y.pct===x.pct&&y.sec===x.sec)) S.sims.push(x); });
   S.bestCombo=Math.max(S.bestCombo||0,o.bestCombo||0);
   const by=o.xpBy&&Object.keys(o.xpBy).length?o.xpBy:{["imp"+(o.exportedAt||"")]:o.xp||0};
   for(const d in by) if(d!==DEV) S.xpBy[d]=Math.max(S.xpBy[d]||0,by[d]||0);

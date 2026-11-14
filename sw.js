@@ -1,6 +1,6 @@
 // Guarda la app en el dispositivo para que funcione sin internet.
 // Si cambias algún archivo, sube también este con un número de versión nuevo.
-const CACHE = "cloze-v1";
+const CACHE = "cloze-v3";
 const ASSETS = [
   "./",
   "index.html",
